@@ -35,6 +35,7 @@
     </div>
     <div class="card p-4 border-top-left-radius-0 border-top-right-radius-0">
         @include('flash::message')
+        <x-errors/>
         <form action="{{ route('login') }}" method="POST">
             @csrf
             <div class="form-group">
