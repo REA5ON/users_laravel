@@ -6,18 +6,18 @@ use App\Http\Requests\CreateRequest;
 use App\Models\User;
 use App\Models\UserProfile;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 
 class CreateController extends Controller
 {
-    /**
-     * Display the create view.
-     *
-     * @return \Illuminate\View\View
-     */
-    function show()
+
+    function show(): View
     {
         return view('create_user');
     }

@@ -15,7 +15,8 @@
         </h1>
 
     </div>
-    <form action="">
+    <form action="{{route('edit.store')}}" method="POST">
+        @csrf
         <div class="row">
             <div class="col-xl-6">
                 <div id="panel-1" class="panel">
@@ -27,26 +28,29 @@
                             <!-- username -->
                             <div class="form-group">
                                 <label class="form-label" for="simpleinput">Имя</label>
-                                <input type="text" id="simpleinput" class="form-control" value="{{ $user->name }}">
+                                <input type="text" name="name" id="simpleinput" class="form-control" value="{{ $profile->name }}">
                             </div>
 
                             <!-- title -->
                             <div class="form-group">
                                 <label class="form-label" for="simpleinput">Место работы</label>
-                                <input type="text" id="simpleinput" class="form-control" value="{{ $user->job }}">
+                                <input type="text" name="job" id="simpleinput" class="form-control" value="{{ $profile->job }}">
                             </div>
 
                             <!-- tel -->
                             <div class="form-group">
                                 <label class="form-label" for="simpleinput">Номер телефона</label>
-                                <input type="text" id="simpleinput" class="form-control" value="{{ $user->phone }}">
+                                <input type="text" name="phone" id="simpleinput" class="form-control" value="{{ $profile->phone }}">
                             </div>
 
                             <!-- address -->
                             <div class="form-group">
                                 <label class="form-label" for="simpleinput">Адрес</label>
-                                <input type="text" id="simpleinput" class="form-control" value="{{ $user->address }}">
+                                <input type="text" name="address" id="simpleinput" class="form-control" value="{{ $profile->address }}">
                             </div>
+
+                            <input type="hidden" name="id" value="{{ $profile->id }}">
+
                             <div class="col-md-12 mt-3 d-flex flex-row-reverse">
                                 <button class="btn btn-warning">Редактировать</button>
                             </div>

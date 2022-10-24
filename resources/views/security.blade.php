@@ -12,8 +12,9 @@
         <h1 class="subheader-title">
             <i class='subheader-icon fal fa-lock'></i> Безопасность
         </h1>
-
     </div>
+    <x-errors/>
+    @include('flash::message')
     <form action="{{ route('security.store') }}" method="POST">
         @csrf
         <div class="row">
@@ -27,7 +28,7 @@
                             <!-- email -->
                             <div class="form-group">
                                 <label class="form-label" for="simpleinput">Email</label>
-                                <input type="text" name="email" id="simpleinput" class="form-control" value="{{ $user->email }}">
+                                <input type="text" name="email" id="simpleinput" class="form-control" value="{{ $profile->email }}">
                             </div>
 
                             <!-- password -->
@@ -41,6 +42,8 @@
                                 <label class="form-label" for="simpleinput">Подтверждение пароля</label>
                                 <input type="password" name="password_confirmation" id="simpleinput" class="form-control">
                             </div>
+
+                            <input type="hidden" name="id" value="{{ $profile->id }}">
 
 
                             <div class="col-md-12 mt-3 d-flex flex-row-reverse">
