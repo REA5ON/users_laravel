@@ -16,13 +16,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         $users = \App\Models\User::factory(60)->create();
+         $users = \App\Models\User::factory(5)->create();
 
          foreach ($users as $user) {
              UserProfile::create([
                  'email' => $user->email,
                  'name' => $user->name,
-                 'status' => 'danger'
+                 'address' => fake()->address(),
+                 'phone' => fake()->phoneNumber(),
+                 'job' => fake()->jobTitle(),
+                 'status' => 'danger',
+                 'image' => fake()->imageUrl()
              ]);
          }
     }

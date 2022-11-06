@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Components\ImageComponent;
 use App\Http\Requests\CreateRequest;
 use App\Models\User;
 use App\Models\UserProfile;
@@ -31,7 +32,7 @@ class CreateController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    function store(CreateRequest $createRequest, Request $request)
+    function store(CreateRequest $createRequest, Request $request, ImageComponent $imageComponent)
     {
         //Validate
         $createRequest->validated();
@@ -43,7 +44,7 @@ class CreateController extends Controller
         ]);
 
 
-        $image = ImageController::storeImage($request->image);
+        $image = $imageComponent->storeImage($request->image);
 
 
         UserProfile::create([
@@ -63,6 +64,6 @@ class CreateController extends Controller
 
         flash('Новый пользователь успешно создан!')->success();
 
-        return redirect()->route('/users');
+        return redirect()->route('users');
     }
 }

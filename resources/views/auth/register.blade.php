@@ -11,7 +11,7 @@
         <div class="page-inner bg-brand-gradient">
             <div class="page-content-wrapper bg-transparent m-0">
                 <div class="flex-1"
-                     style="background: url(img/svg/pattern-1.svg) no-repeat center bottom fixed; background-size: cover;">
+                     style="background: url(/public/img/svg/pattern-1.svg) no-repeat center bottom fixed; background-size: cover;">
                     <div class="container py-4 py-lg-5 my-lg-5 px-4 px-sm-0">
                         <div class="row">
                             <div class="col-xl-12">
@@ -84,7 +84,7 @@
     </div>
 
 
-    <script src="js/vendors.bundle.js"></script>
+    <script src="public/js/vendors.bundle.js"></script>
     <script>
         $("#js-login-btn").click(function (event) {
 
@@ -98,6 +98,12 @@
 
             form.addClass('was-validated');
             // Perform ajax submit here...
+            $(document).ready(function () {
+                $("#username").blur(function () {
+                    var data = $("#username").val();
+                    alert(data)
+                })
+            })
         });
 
     </script>

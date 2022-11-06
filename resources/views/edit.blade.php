@@ -15,6 +15,7 @@
         </h1>
 
     </div>
+    @include('flash::message')
     <form action="{{route('edit.store')}}" method="POST">
         @csrf
         <div class="row">

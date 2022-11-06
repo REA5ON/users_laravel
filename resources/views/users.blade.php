@@ -43,16 +43,17 @@
                         <div class="d-flex flex-row align-items-center">
                                 <span class="status status-{{ $profile->status }} mr-3">
                                     <span class="rounded-circle profile-image d-block "
-                                          style="background-image:url('/img/users/{{ \App\Http\Controllers\ImageController::emptyImage($profile->image) }}'); background-size: cover;"></span>
+                                          style="background-image:url('{{ \App\Components\ImageComponent::emptyImage($profile->image) }}'); background-size: cover;"></span>
                                 </span>
                             <div class="info-card-text flex-1">
                                 <a href="javascript:void(0);" class="fs-xl text-truncate text-truncate-lg text-info"
-                                   data-toggle="dropdown" aria-expanded="false">
-                                    {{ $profile->name }}
+                                   data-toggle="dropdown" aria-expanded="false">{{ $profile->name }}
                                     @can('user', $profile)
                                         <i class="fal fas fa-cog fa-fw d-inline-block ml-1 fs-md"></i>
                                         <i class="fal fa-angle-down d-inline-block ml-1 fs-md"></i>
+                                    @endcan
                                 </a>
+                                @can('user', $profile)
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="{{ route('edit.show', $profile->id) }}">
                                         <i class="fa fa-edit"></i>
@@ -73,7 +74,7 @@
                                     </a>
                                 </div>
                                 @endcan
-                                <span class="text-truncate text-truncate-xl">{{ $profile->job }}</span>
+                                <br><span class="text-truncate text-truncate-xl">{{ $profile->job }}</span>
                             </div>
                             <button class="js-expand-btn btn btn-sm btn-default d-none" data-toggle="collapse"
                                     data-target="#c_1 > .card-body + .card-body" aria-expanded="false">

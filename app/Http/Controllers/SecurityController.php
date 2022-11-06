@@ -2,34 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Auth\NewPasswordController;
-use App\Http\Controllers\Auth\PasswordResetLinkController;
-use App\Http\Requests\SecurityRequest;
-use App\Mail\MyTestMail;
 use App\Models\User;
 use App\Models\UserProfile;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
-use Illuminate\View\View;
 
 class SecurityController extends Controller
 {
-    protected UserProfile $profile;
-
-
-    public function __construct(UserProfile $userProfile)
-    {
-        $this->profile = $userProfile;
-    }
-
 
     function show($id)
     {
-        $profile = $this->profile->find($id);
+        $profile = UserProfile::find($id);
 
         if (Gate::denies('user', $profile)) {
             return redirect()->back();
@@ -39,7 +24,7 @@ class SecurityController extends Controller
     }
 
 
-    function store(Request $request, PasswordResetLinkController $pass)
+    function store(Request $request)
     {
 
         $request->validate([
@@ -47,45 +32,33 @@ class SecurityController extends Controller
             'email' => ['required', 'string', 'email', 'max:255'],
         ]);
 
-        $user = UserProfile::find($request->id);
+        $profile = UserProfile::find($request->id);
+
 
         //if email will be change
-        if ($request->email !== $user->email) {
-            $request->validate(
-                [
-                    'email' => ['unique:users'],
-                ]);
+        if ($request->email !== $profile->email) {
+            $request->validate([
+                'email' => ['unique:users']
+            ]);
 
-//            Mail::to('mailtrap@test.com')->send(new MyTestMail());
-            dd("Email changed");
+            $userSave = User::find($profile->id);
+            $userSave->email = $request->email;
+            $userSave->save();
 
-            $user_save = User::find($user->id);
-            $user_save->email = $request->email;
-            $user_save->save();
+            $profileSave = UserProfile::find($profile->id);
+            $profileSave->email = $request->email;
+            $profileSave->save();
 
-            $user_save = UserProfile::find($user->id);
-            $user_save->email = $request->email;
-            $user_save->save();
-
+            flash()->success('Email успешно изменён!');
         };
 
-        dd("Email not changed");
+        //new password save
+        $passSave = User::find($profile->id);
+        $passSave->password = Hash::make($request->password);
+        $passSave->save();
 
-        $request->validate([
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
-
-
-
-        //Check admin or author: Gate::
-        //if email was changed
-        //validation
-//        if ($request->email === )
-
-
-        //sending link to email
-        // $email->store($request)
-
+        flash()->success('Пароль успешно изменён!');
+        return redirect()->route('users');
 
     }
 }

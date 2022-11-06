@@ -20,7 +20,7 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::middleware('auth')->group(function (){
+Route::middleware(['auth','verified'])->group(function (){
     //UserController
     Route::get('users', [UserController::class, 'index'])->name('users');
 
@@ -44,14 +44,14 @@ Route::middleware('auth')->group(function (){
     //StatusController
     Route::controller(StatusController::class)->group(function () {
         Route::get('status/{id}', 'show')->name('status');
-        Route::post('status', 'store');
+        Route::post('status', 'store')->name('status.store');
     });
 
 
     //MediaController
     Route::controller(MediaController::class)->group(function () {
         Route::get('media/{id}', 'show')->name('media');
-        Route::post('media', 'store');
+        Route::post('media/store', 'store')->name('media.store');
     });
 
     //SecurityController
