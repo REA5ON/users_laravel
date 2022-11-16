@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Components\ImageComponent;
 use App\Http\Requests\MediaRequest;
+use App\Models\User;
 use App\Models\UserProfile;
 use Illuminate\Support\Facades\Gate;
 

@@ -1,7 +1,7 @@
 @extends('layouts/layout')
 
 @section('title')
-    Пользователи
+    Безопасность
 @endsection
 
 
@@ -15,7 +15,7 @@
     </div>
     <x-errors/>
     @include('flash::message')
-    <form action="{{ route('security.store') }}" method="POST">
+    <form action="{{ route('security.store', $profile->id) }}" method="POST">
         @csrf
         <div class="row">
             <div class="col-xl-6">
@@ -42,8 +42,6 @@
                                 <label class="form-label" for="simpleinput">Подтверждение пароля</label>
                                 <input type="password" name="password_confirmation" id="simpleinput" class="form-control">
                             </div>
-
-                            <input type="hidden" name="id" value="{{ $profile->id }}">
 
 
                             <div class="col-md-12 mt-3 d-flex flex-row-reverse">

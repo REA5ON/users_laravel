@@ -3,6 +3,7 @@
 namespace App\Components;
 
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\File;
 
 class ImageComponent
 {
@@ -17,7 +18,7 @@ class ImageComponent
     {
         //delete exist image
         if ($profile->image !== null) {
-            \Illuminate\Support\Facades\File::delete($profile->image);
+            File::delete($profile->image);
         }
 
         //new name
@@ -41,10 +42,8 @@ class ImageComponent
     public static function emptyImage($image)
     {
         $emptyImageName = 'https://cdn-icons-png.flaticon.com/512/992/992490.png';
-        if ($image === null) {
-            return $emptyImageName;
-        } else {
-            return $image;
-        }
+        return $image == null
+                ? $emptyImageName
+                : $image;
     }
 }

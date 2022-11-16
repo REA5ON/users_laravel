@@ -14,7 +14,7 @@
             </h1>
 
         </div>
-        <form action="{{ route('status.store') }}" name="status" method="POST">
+        <form action="{{ route('status.store', $profile->id) }}" name="status" method="POST">
             @csrf
             <div class="row">
                 <div class="col-xl-6">
@@ -36,9 +36,8 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <input type="hidden" name="id" value="{{ $profile->id }}">
                                     <div class="col-md-12 mt-3 d-flex flex-row-reverse">
-                                        <button class="btn btn-warning">Set Status</button>
+                                        <button class="btn btn-warning">Применить</button>
                                     </div>
                                 </div>
                             </div>

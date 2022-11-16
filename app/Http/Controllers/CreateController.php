@@ -32,10 +32,10 @@ class CreateController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    function store(CreateRequest $createRequest, Request $request, ImageComponent $imageComponent)
+    function store(CreateRequest $request, ImageComponent $imageComponent)
     {
         //Validate
-        $createRequest->validated();
+        $request->validated();
 
         $user = User::create([
             'name' => $request->name,
@@ -43,22 +43,22 @@ class CreateController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-
-        $image = $imageComponent->storeImage($request->image);
-
-
-        UserProfile::create([
+        $profile = UserProfile::create([
             'email' => $request->email,
             'name' => $request->name,
             'job' => $request->job,
             'phone' => $request->phone,
             'address' => $request->address,
-            'image' => $image,
             'vk' => $request->vk,
             'telegram' => $request->telegram,
             'instagram' => $request->instagram,
             'status' => $request->status
         ]);
+
+        if ($request->image) {
+            $imageComponent->storeImage($request->image, $profile);
+        }
+
 
         event(new Registered($user));
 

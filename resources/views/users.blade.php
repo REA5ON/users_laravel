@@ -46,13 +46,12 @@
                                           style="background-image:url('{{ \App\Components\ImageComponent::emptyImage($profile->image) }}'); background-size: cover;"></span>
                                 </span>
                             <div class="info-card-text flex-1">
-                                <a href="javascript:void(0);" class="fs-xl text-truncate text-truncate-lg text-info"
-                                   data-toggle="dropdown" aria-expanded="false">{{ $profile->name }}
+                                <a href={{ route('profile', $profile->id) }} class="fs-xl text-truncate text-truncate-lg text-info"
+                                   >{{ $profile->name }}</a>
                                     @can('user', $profile)
-                                        <i class="fal fas fa-cog fa-fw d-inline-block ml-1 fs-md"></i>
-                                        <i class="fal fa-angle-down d-inline-block ml-1 fs-md"></i>
+                                        <i class="fal fas fa-cog fa-fw d-inline-block ml-1 fs-md"  data-toggle="dropdown" aria-expanded="false"></i>
+                                        <i class="fal fa-angle-down d-inline-block ml-1 fs-md" data-toggle="dropdown" aria-expanded="false"></i>
                                     @endcan
-                                </a>
                                 @can('user', $profile)
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="{{ route('edit.show', $profile->id) }}">

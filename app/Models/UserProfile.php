@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -31,4 +32,9 @@ class UserProfile extends Model
      * @var string
      */
     protected $connection = 'mysql';
+
+    public function profile(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }

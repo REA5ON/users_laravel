@@ -16,7 +16,7 @@
 
     </div>
     @include('flash::message')
-    <form action="{{route('edit.store')}}" method="POST">
+    <form action="{{route('edit.store', $profile->id )}}" method="POST">
         @csrf
         <div class="row">
             <div class="col-xl-6">
@@ -49,8 +49,6 @@
                                 <label class="form-label" for="simpleinput">Адрес</label>
                                 <input type="text" name="address" id="simpleinput" class="form-control" value="{{ $profile->address }}">
                             </div>
-
-                            <input type="hidden" name="id" value="{{ $profile->id }}">
 
                             <div class="col-md-12 mt-3 d-flex flex-row-reverse">
                                 <button class="btn btn-warning">Редактировать</button>

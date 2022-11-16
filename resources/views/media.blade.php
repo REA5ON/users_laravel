@@ -16,7 +16,7 @@
     </div>
     <x-errors></x-errors>
     @include('flash::message')
-    <form action="{{ route('media.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('media.store', $profile->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-xl-6">
@@ -36,8 +36,6 @@
                                 <label class="form-label" for="example-fileinput">Выберите аватар</label>
                                 <input type="file" name="image" id="example-fileinput" class="form-control-file">
                             </div>
-
-                            <input type="hidden" name="id" value="{{ $profile->id }}">
 
                             <div class="col-md-12 mt-3 d-flex flex-row-reverse">
                                 <button class="btn btn-warning">Загрузить</button>

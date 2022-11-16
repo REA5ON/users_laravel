@@ -26,10 +26,7 @@ Route::middleware(['auth','verified'])->group(function (){
 
 
     //ProfileController
-    Route::controller(ProfileController::class)->group(function () {
-        Route::get('profile/{id}', 'show');
-        Route::post('profile', 'store');
-    });
+    Route::get('profile/{id}', [ProfileController::class, 'show'])->name('profile');
 
 
     //CreateController
@@ -44,26 +41,26 @@ Route::middleware(['auth','verified'])->group(function (){
     //StatusController
     Route::controller(StatusController::class)->group(function () {
         Route::get('status/{id}', 'show')->name('status');
-        Route::post('status', 'store')->name('status.store');
+        Route::post('status/{id}', 'store')->name('status.store');
     });
 
 
     //MediaController
     Route::controller(MediaController::class)->group(function () {
         Route::get('media/{id}', 'show')->name('media');
-        Route::post('media/store', 'store')->name('media.store');
+        Route::post('media/store/{id}', 'store')->name('media.store');
     });
 
     //SecurityController
     Route::controller(SecurityController::class)->group(function () {
         Route::get('security/{id}', 'show')->name('security');
-        Route::post('security', 'store')->name('security.store');
+        Route::post('security/{id}', 'store')->name('security.store');
     });
 
     //EditController
     Route::controller(EditController::class)->group(function () {
         Route::get('edit/{id}', 'show')->name('edit.show');
-        Route::post('edit', 'store')->name('edit.store');
+        Route::post('edit/{id}', 'store')->name('edit.store');
     });
 });
 

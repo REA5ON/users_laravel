@@ -14,7 +14,6 @@ use Illuminate\View\View;
 class EditController extends Controller
 {
 
-
     public function show($id)
     {
         $profile = UserProfile::find($id);
@@ -25,6 +24,7 @@ class EditController extends Controller
 
         return view('edit', ['profile' => $profile]);
     }
+
 
     public function store(Request $request)
     {
