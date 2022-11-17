@@ -8,6 +8,7 @@ use App\Http\Controllers\SecurityController;
 use App\Http\Controllers\StatusController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DeleteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +63,8 @@ Route::middleware(['auth','verified'])->group(function (){
         Route::get('edit/{id}', 'show')->name('edit.show');
         Route::post('edit/{id}', 'store')->name('edit.store');
     });
+
+    Route::get('delete/{id}', [DeleteController::class, 'destroy'])->name('delete');
 });
 
 require __DIR__.'/auth.php';
