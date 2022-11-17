@@ -2,6 +2,7 @@
 
 namespace App\Components;
 
+use App\Models\UserProfile;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
 
@@ -14,12 +15,9 @@ class ImageComponent
      * @param null $profile
      * @return string $imageName
      */
-    public function storeImage(UploadedFile $uploadedFile, $profile = null)
+    public function storeImage(UploadedFile $uploadedFile, UserProfile $profile = null)
     {
-        //delete exist image
-        if ($profile->image !== null) {
-            File::delete($profile->image);
-        }
+        $this->deleteImage($profile);
 
         //new name
         $imageName = $uploadedFile->hashName();
@@ -31,6 +29,14 @@ class ImageComponent
         //save to db
         $profile->image = $path . $imageName;
         $profile->save();
+    }
+
+    public function deleteImage($profile)
+    {
+        //delete exist image
+        if ($profile->image !== null) {
+            File::delete($profile->image);
+        }
     }
 
     /**

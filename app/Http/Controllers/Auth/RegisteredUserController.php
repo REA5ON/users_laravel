@@ -8,6 +8,7 @@ use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\User;
 use App\Models\UserProfile;
 use App\Providers\RouteServiceProvider;
+use GuzzleHttp\Psr7\Response;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,6 +37,7 @@ class RegisteredUserController extends Controller
      */
     public function store(RegisterRequest $request)
     {
+        return response()->json(['emailverify' => "okokokokokok"], 200);
         $request->validated();
 
         $user = User::create([

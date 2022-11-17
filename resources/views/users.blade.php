@@ -67,7 +67,7 @@
                                         <i class="fa fa-camera"></i>
                                         Загрузить аватар
                                     </a>
-                                    <a href="#" class="dropdown-item" onclick="return confirm('are you sure?');">
+                                    <a href="{{ route('delete', $profile->id) }}" class="dropdown-item" onclick="return confirm('Вы уверены?');">
                                         <i class="fa fa-window-close"></i>
                                         Удалить
                                     </a>

@@ -11,7 +11,7 @@
         <div class="page-inner bg-brand-gradient">
             <div class="page-content-wrapper bg-transparent m-0">
                 <div class="flex-1"
-                     style="background: url(/pimg/svg/pattern-1.svg) no-repeat center bottom fixed; background-size: cover;">
+                     style="background: url(/img/svg/pattern-1.svg) no-repeat center bottom fixed; background-size: cover;">
                     <div class="container py-4 py-lg-5 my-lg-5 px-4 px-sm-0">
                         <div class="row">
                             <div class="col-xl-12">
@@ -59,7 +59,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label" for="userpassword">Повторите пароль<br></label>
-                                            <input type="password" name="password_confirmation" id="userpassword"
+                                            <input type="password" name="password_confirmation" id="password_confirm"
                                                    class="form-control"
                                                    placeholder="" required>
                                             <div class="invalid-feedback">Заполните поле.</div>
@@ -84,7 +84,7 @@
     </div>
 
 
-    <script src="public/js/vendors.bundle.js"></script>
+    <script src="js/vendors.bundle.js"></script>
     <script>
         $("#js-login-btn").click(function (event) {
 
@@ -98,21 +98,8 @@
 
             form.addClass('was-validated');
             // Perform ajax submit here...
-            {{--$(document).ready(function () {--}}
-            {{--    $("#username").blur(function () {--}}
-            {{--        const data = $("#username").val();--}}
-            {{--        if (data != ''){--}}
-            {{--            $.ajax({--}}
-            {{--                url: {{ route('register') }},--}}
-            {{--                type: 'POST',--}}
-            {{--                data:--}}
-            {{--            })--}}
-            {{--        }else {--}}
-            {{--            $("#username").next().text('1212121');--}}
-            {{--        }--}}
-            {{--    })--}}
-            {{--})--}}
-        });
+
+        };
 
     </script>
 @endsection
